@@ -20,11 +20,12 @@ INTRADAY_STREAM_NAME = config("INTRADAY_STREAM_NAME")
 AWS_REGION=config("AWS_REGION")
 AWS_ACCOUNT=config("AWS_ACCOUNT")
 
-STREAM_ARN = f"arn:aws:kinesis:{AWS_REGION}:{AWS_ACCOUNT}:stream/" + INTRADAY_STREAM_NAME
+STREAM_ARN = f"arn:aws:kinesis:{AWS_REGION}:{AWS_ACCOUNT}:stream/{INTRADAY_STREAM_NAME}"
 
 ENVIRONMENT = {"DYNAMO_TABLE_NAME": DYNAMO_TABLE_NAME}
 
 
+# ticker and last refreshed is PK
 class DataConsumerStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
