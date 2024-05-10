@@ -58,6 +58,7 @@ class DataConsumerStack(Stack):
             ],
         )
 
+# No layer nneded
         crypo_data_consumer = _lambda.Function(
             self,
             "DataConsumerHandler",

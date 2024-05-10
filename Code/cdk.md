@@ -45,11 +45,16 @@ cd mkdir layers/alpha_vantage_layer/python
 pip install -t . alpha_vantage
 
 ```
+Create app.py
 
+Care you made need to activate env before 
+you may also need to bootstrap 
 
-
+cd to directory with cdk.json
+do one ata time from app.py
 ```commandline
-
+cdk synth KinesisStreamStack
+cdk deploy KinesisStreamStack --verbose
 ```
 
 ```commandline
