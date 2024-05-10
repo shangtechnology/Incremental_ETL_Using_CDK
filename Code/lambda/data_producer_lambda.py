@@ -23,6 +23,7 @@ DICT_KEYS = [
     ("9. Ask Price", "ask_price"),
 ]
 
+# There facilitate changes the values from string to floats later
 FLOAT_KEYS = ["exchange_rate", "bid_price", "ask_price"]
 
 
@@ -57,11 +58,14 @@ def get_crypto_data(from_currency, to_currency):
     return data
 
 
+# the following is taking a date and creating new dat that be reformatted and returned to use as a partition key
 def create_partition_from_date(last_refreshed: str) -> str:
     dt = datetime.strptime(last_refreshed, "%Y-%m-%d %H:%M:%S")
-    return dt.strftime("%Y-%m-%dT%H:00:00Z")
+    return dt.strftime("%Y-%m-%dT%H:00:00Z") # hourly partition
 
 
+# json.dumps dictionary to string
+# encode as it wants bytes not string
 def handle_intraday_request(from_currency, to_currency):
     client = boto3.client("kinesis")
     data = get_crypto_data(from_currency, to_currency)
@@ -73,7 +77,7 @@ def handle_intraday_request(from_currency, to_currency):
     )
     return response
 
-
+# event will ghet passed in when invoked
 def handler(event, context):
     assert "from_currency" in event.keys(), "Event must include key 'from_currency'"
     assert "to_currency" in event.keys(), "Event must include key 'to_currency'"

@@ -47,6 +47,8 @@ class DataProducerStack(Stack):
             code=_lambda.AssetCode("layers/alpha_vantage_layer"),
         )
 
+# this refer to the folder named lambda code=_lambda.Code.from_asset("lambda"),
+ # again this referd to the handler in the py file handler="data_producer_lambda.handler"
         crypo_data_producer = _lambda.Function(
             self,
             "CryptoDataHandler",
@@ -60,6 +62,7 @@ class DataProducerStack(Stack):
             role=lambda_role,
         )
 
+# Schedule the lambda
         intraday_rule = events.Rule(
             self, "IntradayRule", schedule=events.Schedule.rate(Duration.minutes(1))
         )
