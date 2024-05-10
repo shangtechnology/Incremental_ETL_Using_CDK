@@ -13,6 +13,7 @@ from decouple import config
 LAMBDA_RUNTIME = _lambda.Runtime.PYTHON_3_9
 LAMBDA_PRODUCER_NAME = config("LAMBDA_PRODUCER_NAME")
 
+## This uses our .env file
 ENVIRONMENT = {
     "API_KEY": config("API_KEY"),
     "INTRADAY_STREAM_NAME": config("INTRADAY_STREAM_NAME"),
@@ -21,6 +22,8 @@ ENVIRONMENT = {
 CRYPTO_CONVERSIONS = [("BTC", "USD"), ("ETC", "USD"), ("DOGE", "USD")]
 
 
+# LambdaRole is our name of for the new IAM name
+# mamnaged policy names are standard ones but we could create our own
 class DataProducerStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)

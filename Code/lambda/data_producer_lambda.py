@@ -6,6 +6,7 @@ import boto3
 import time
 import math
 
+## Notice we use the OS env vironables diff ehre refer to stack py to see how it is set
 API_KEY = os.environ["API_KEY"]
 INTRADAY_STREAM_NAME = os.environ["INTRADAY_STREAM_NAME"]
 BATCH_LIMIT = 500

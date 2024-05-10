@@ -5,6 +5,8 @@ from decouple import config
 INTRADAY_STREAM_NAME = config("INTRADAY_STREAM_NAME")
 
 
+# shard count use higher ofr large data and try to distribute evenly
+# purge data is set by reteniton period
 class KinesisStreamStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
