@@ -9,9 +9,6 @@ linux
 install cdk by 
 ```commandline
 python -m pip inmstall aws-cdk-lib
-mkdir project-name
-cd project-name
-cdk init app --language python
 ```
 ```commandline
 mkdir project-name
@@ -25,7 +22,7 @@ python decouple is to get environmenrt variables
 ```commandline
 pip install -r requirements.txt
 pip install boto3
-python decouple
+pip install python_decouple
 ```
 In project folder IDE look for generic folder that can be deleted
 
